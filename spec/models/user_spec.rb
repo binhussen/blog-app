@@ -3,17 +3,19 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   context 'Validations' do
     it 'checks if name is empty' do
-      user = User.new(photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0,)
+      user = User.new(photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 0)
       expect(user.valid?).to eq false
     end
 
     it 'checks if posts_counter is an integer' do
-      user = User.new(name: 'John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: 1.7)
+      user = User.new(name: 'John', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
+                      posts_counter: 1.7)
       expect(user.valid?).to eq false
     end
 
     it 'checks if posts_counter is greater than zero' do
-      user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.', posts_counter: -1)
+      user = User.new(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
+                      posts_counter: -1)
       expect(user.valid?).to eq false
     end
   end

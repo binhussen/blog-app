@@ -21,7 +21,6 @@ RSpec.describe Post, type: :model do
     end
   end
 
-
   context 'Post methods' do
     it 'check recent comments' do
       3.times { Comment.create(author: @author, post: @post, text: 'This is a comment') }
