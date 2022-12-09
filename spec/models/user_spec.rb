@@ -25,7 +25,7 @@ RSpec.describe User, type: :model do
       user = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.',
                          posts_counter: 0)
       3.times { Post.create(author: user, title: 'Hello', text: 'This is my first post') }
-      expect(user.recent_posts).to eq user.posts.last(3)
+      expect(user.recent_posts).to match_array user.posts.last(3)
     end
   end
 end
