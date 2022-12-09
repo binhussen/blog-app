@@ -1,3 +1,25 @@
 <section>
   <h1>User</h1>
+
+  <div>
+    <img src="<%= @user.image %>" alt="User image">
+    <p><%= @user.name %> Number of posts: <%= @user.posts_counter %></p>
+  </div>
+  <div>
+    <p>Bio</p>
+    <p><%= @user.bio %></p>
+  </div>
+  <ul>
+  <% @user.recent_posts.each  do |post| %>
+    <li>
+      <p><%= post.title %></p>
+      <p><%= truncate(post.text, length: 50) %></p>
+      <p>Comments <%= post.comments_counter %>, Likes <%= post.likes_counter %></p>
+    </li>
+  <% end %>
+  </ul>
+
+  <button type="button">See all posts
+  <%= link_to "See all posts", user_posts_path(@user) %>
+  </button>
 </section>
