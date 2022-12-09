@@ -1,19 +1,21 @@
 class PostsController < ApplicationController
   def index
     set_user
+    @posts = @user.posts
   end
 
   def show
+    set_user
     set_post
   end
 
   private
 
   def set_post
-    @post = params[:post_id]
+    @post = Post.find(params[:id])
   end
 
   def set_user
-    @user = params[:user_id]
+    @user = User.find(params[:user_id])
   end
 end
