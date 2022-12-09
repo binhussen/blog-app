@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'Users Controller', type: :request do
   describe '/index' do
     it 'check http success' do
-      get '/users/'
+      get '/users'
       expect(response).to have_http_status(:ok)
     end
 
@@ -14,13 +14,14 @@ RSpec.describe 'Users Controller', type: :request do
 
     it 'Check the placeholder' do
       get '/'
-      expect(response.body).to include('Here is a list of all users')
+      expect(response.body).to include('Users')
     end
   end
 
   describe '/show' do
     before :each do
-      get '/users/:id'
+      @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
+      get "/users/#{@author.id}"
     end
 
     it 'Check http success' do
@@ -32,7 +33,7 @@ RSpec.describe 'Users Controller', type: :request do
     end
 
     it 'Check the placeholder' do
-      expect(response.body).to include('Here is a User by given id')
+      expect(response.body).to include('User')
     end
   end
 end

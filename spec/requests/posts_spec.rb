@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe 'Posts Controller', type: :request do
   describe '/index' do
     before :each do
-      get '/users/:user_id/posts/'
+      @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
+      get "/users/#{@author.id}/posts"
     end
 
     it 'Check http success' do
-      get '/posts/index'
       expect(response).to have_http_status(:ok)
     end
 
@@ -16,17 +16,18 @@ RSpec.describe 'Posts Controller', type: :request do
     end
 
     it 'Check the placeholder' do
-      expect(response.body).to include('Here is a list of all posts for given user')
+      expect(response.body).to include('posts by user')
     end
   end
 
   describe '/show' do
     before :each do
-      get '/users/:user_id/posts/:id'
+      @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
+      @post = Post.create(author: @author, title: 'Post communication', text: 'This is my first post')
+      get "/users/#{@author.id}/posts/#{@post.id}"
     end
 
     it 'Check http success' do
-      get '/posts/show'
       expect(response).to have_http_status(:ok)
     end
 
@@ -35,7 +36,7 @@ RSpec.describe 'Posts Controller', type: :request do
     end
 
     it 'Check the placeholder' do
-      expect(response.body).to include('Here is a specific posts for a given user')
+      expect(response.body).to include('Post')
     end
   end
 end
