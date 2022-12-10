@@ -4,4 +4,6 @@
     <img src="<%= user.photo %>" alt="User Image"/>
     <p><%= link_to user.name, user_path(user) %> Number of posts: <%= user.posts_counter %> </p>
   <% end %>
+
+  <%= link_to 'Create post', new_user_post_path(@user) %>
 </section>
