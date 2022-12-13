@@ -1,1 +1,22 @@
-<p>Here is a list of all posts</p>
+<section>
+  <h1>posts by user</h1>
+
+  <div>
+    <img src="<%= @user.photo %>" alt="User image">
+    <p><%= @user.name %>Number of posts: <%= @user.posts_counter %></p>
+  </div>
+  <ul>
+    <% @posts.each do |post| %>
+      <li>
+        <p><%= link_to post.title, user_post_path(@user, post) %></p>
+        <p><%= post.text %></p>
+        <p>Comments <%= post.comments_counter %>, Likes <%= post.likes_counter %></p>
+        <ul>
+          <% post.recent_comments.each do |comment| %>
+            <p><%= comment.author.name %> : <%= comment.text %></p>
+          <% end %>
+        </ul>
+      </li>
+    <% end %>
+  </ul>
+</section>
