@@ -1,8 +1,8 @@
 class PostsController < ApplicationController
   before_action :set_user, only: %i[index create show]
   def index
-    set_user
-    @posts = @user.posts
+    @user = User.includes(:posts).find(params[:user_id])
+    
   end
 
   def show
