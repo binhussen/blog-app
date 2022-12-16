@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Like, type: :model do
-  before(:all) do
+  before(:example) do
     @author = User.create(name: 'Tom', photo: 'https://unsplash.com/photos/F_-0BxGuVvo', bio: 'Teacher from Mexico.')
     @post = Post.create(author: @author, title: 'Post communication', text: 'This is my first post')
     @like = Like.create(author: @author, post: @post)
